@@ -1,12 +1,10 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_swiper/flutter_swiper.dart';
-import 'package:store_app/home/searchBar.dart';
-import 'package:store_app/model/category_list_entity.dart';
-import 'package:store_app/widgets/load_image.dart';
-
+import 'package:store/home/searchBar.dart';
+import 'package:store/model/category_list_entity.dart';
 import 'avatar.dart';
 import 'cateGoryList.dart';
+import 'home.dart';
 
 class HomePage extends StatelessWidget {
   @override
@@ -45,57 +43,7 @@ class HomePage extends StatelessWidget {
                   ],
                 ),
               )),
-          Expanded(
-              child: Column(
-            children: [
-              Row(
-                children: [
-                  Container(
-                    height: 100,
-                    width: MediaQuery.of(context).size.width - 220,
-                    child: new Swiper(
-                      itemBuilder: (BuildContext context, int index) {
-                        return Row(
-                          children: [
-                            Expanded(
-                              flex: 5,
-                              child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 10, top: 10, bottom: 10, right: 5),
-                                  child: Container(
-                                    height:100,
-                                    decoration: BoxDecoration(
-                                        color:
-                                            Color.fromRGBO(231, 233, 233, 1)),
-                                  )),
-                            ),
-
-                            Expanded(
-                              flex: 5,
-                              child: Padding(
-                                  padding: EdgeInsets.only(
-                                      left: 5, top: 10, bottom: 10, right: 10),
-                                  child: Container(
-                                    height:100,
-                                    decoration: BoxDecoration(
-                                        color:
-                                            Color.fromRGBO(231, 233, 233, 1)),
-                                  )),
-                            )
-                          ],
-                        );
-                        LoadImage('avatar');
-                      },
-                      itemCount: 3,
-                      itemWidth: MediaQuery.of(context).size.width,
-                      pagination: new SwiperPagination(),
-                      control: new SwiperControl(),
-                    ),
-                  )
-                ],
-              )
-            ],
-          ))
+            Home()
         ])));
   }
 }

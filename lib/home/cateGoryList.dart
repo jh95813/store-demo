@@ -1,6 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:store_app/model/category_list_entity.dart';
+import 'package:store/model/category_list_entity.dart';
 
 
 class CategoryList extends StatefulWidget{
