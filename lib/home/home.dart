@@ -2,8 +2,6 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_swiper/flutter_swiper.dart';
 import 'package:store/home/category_card.dart';
-import 'package:store/widgets/load_image.dart';
-
 
 class Home extends StatefulWidget {
   @override
@@ -22,14 +20,13 @@ class _Home extends State<Home> {
 
   @override
   Widget build(BuildContext context) {
-    return Expanded(
-        child: Column(
+    return   Column(
       children: [
         Row(
           children: [
             Container(
                 height: 240,
-                width: MediaQuery.of(context).size.width - 220,
+                width: MediaQuery.of(context).size.width-220,
                 child: Row(
                   children: [
                     Container(
@@ -44,8 +41,8 @@ class _Home extends State<Home> {
                         ),
                       ),
                     ),
-                    Container(
-                      width: MediaQuery.of(context).size.width - 270,
+                    Expanded(
+
                       child: buildCustomSwiper(context),
                     ),
                     Container(
@@ -73,14 +70,16 @@ class _Home extends State<Home> {
           ),
         ),
         Container(
-          width: MediaQuery.of(context).size.width,
-          padding:
-              EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0, bottom: 20.0),
-          child:CategoryCard()
+            width: MediaQuery.of(context).size.width,
+            padding:
+            EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0, bottom: 20.0),
+            child:CategoryCard()
 
         ),
+
       ],
-    ));
+    );
+
   }
 
   Swiper buildCustomSwiper(BuildContext context) {
@@ -185,7 +184,7 @@ class _Home extends State<Home> {
             )
           ],
         );
-        LoadImage('avatar');
+
       },
       itemCount: 3,
       itemWidth: MediaQuery.of(context).size.width,

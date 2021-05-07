@@ -1,5 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:store/core/moke_data.dart';
+
+import 'package:store/dbus/sys_custom_setting.dart';
 import 'package:store/home/searchBar.dart';
 import 'package:store/model/category_list_entity.dart';
 import 'avatar.dart';
@@ -7,11 +11,16 @@ import 'cateGoryList.dart';
 import 'home.dart';
 
 class HomePage extends StatelessWidget {
-  @override
+  final sysConfig=new SysCustomSetting();
   void onChanged(CategoryModelEntity value) {
-    print(value.label);
+
+  }
+  Future<void> getSysConfig() async{
+     final result =await sysConfig.getSysCustomSetting();
+      Get.changeTheme(result.sysTheme);
   }
 
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
@@ -39,11 +48,27 @@ class HomePage extends StatelessWidget {
                         child: CategoryList(
                       callback: (v) => onChanged(v),
                     )),
-                    CustomAvatar()
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        CustomAvatar(),
+                        IconButton(
+                          icon: Icon(Icons.settings),
+                          onPressed: () => {
+
+                          },
+                        )
+                      ],
+                    )
                   ],
                 ),
               )),
-            Home()
+          Container(
+            width: MediaQuery.of(context).size.width - 220,
+            child: SingleChildScrollView(
+              child: Home(),
+            ),
+          )
         ])));
   }
 }

@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 
 class CustomAvatar extends StatelessWidget {
-  static const double _imageSize = 40.0;
+
   @override
   Widget build(BuildContext context) {
     return Row(
