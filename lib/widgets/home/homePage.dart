@@ -1,23 +1,26 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:store/core/moke_data.dart';
-
+import 'package:store/core/data_logic.dart';
 import 'package:store/dbus/sys_custom_setting.dart';
-import 'package:store/home/searchBar.dart';
-import 'package:store/model/category_list_entity.dart';
+import 'package:store/widgets/home/searchBar.dart';
+import 'package:store/widgets/my_local/my_local.dart';
 import 'avatar.dart';
 import 'cateGoryList.dart';
 import 'home.dart';
 
 class HomePage extends StatelessWidget {
-  final sysConfig=new SysCustomSetting();
-  void onChanged(CategoryModelEntity value) {
+  final sysConfig = new SysCustomSetting();
+  final dataLogic = Get.find<DataLogic>();
 
+  void onChanged(int index) {
+    var homeIndex = dataLogic.state.homeMenuIndex;
+    homeIndex.value = index;
   }
-  Future<void> getSysConfig() async{
-     final result =await sysConfig.getSysCustomSetting();
-      Get.changeTheme(result.sysTheme);
+
+  Future<void> getSysConfig() async {
+    final result = await sysConfig.getSysCustomSetting();
+    Get.changeTheme(result.sysTheme);
   }
 
   @override
@@ -54,9 +57,7 @@ class HomePage extends StatelessWidget {
                         CustomAvatar(),
                         IconButton(
                           icon: Icon(Icons.settings),
-                          onPressed: () => {
-
-                          },
+                          onPressed: () => {},
                         )
                       ],
                     )
@@ -66,7 +67,16 @@ class HomePage extends StatelessWidget {
           Container(
             width: MediaQuery.of(context).size.width - 220,
             child: SingleChildScrollView(
-              child: Home(),
+              child:Obx((){
+                var homeIndex=dataLogic.state.homeMenuIndex;
+                if(homeIndex.value==0){
+                  return Home();
+                }
+                if(homeIndex.value==2){
+                  return MyLocal();
+                }
+                return Home();
+              }),
             ),
           )
         ])));

@@ -49,7 +49,7 @@ List<Map<String,dynamic>> mokeJson=[
   {
     "id":6,
     "name":"钉钉",
-    "tag":"阿里巴巴旗下办公平台",
+    "tag":"阿里巴巴",
     "icon":"icon",
     "size":1000,
     "installed":false,
