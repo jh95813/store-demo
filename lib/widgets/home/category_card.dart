@@ -2,12 +2,12 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:store/core/data_logic.dart';
-import 'package:store/core/data_state.dart';
 import 'package:store/core/moke_data.dart';
 import 'package:store/model/category_card_entity.dart';
 
 class CategoryCard extends StatelessWidget {
-  final DataLogic dataLogic = Get.find();
+
+  final DataLogic dataLogic = Get.find<DataLogic>();
 
   RxList<MokeModelEntity> _cardData;
   CategoryCardEntity _cardParams =
@@ -43,11 +43,14 @@ class CategoryCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
     return
       Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children:
       buildGird()
+   ,
+
     );
   }
 

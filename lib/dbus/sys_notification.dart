@@ -3,16 +3,16 @@ import 'package:store/dbus/dbus_register.dart';
 
 class SysNotification {
    final dBus=dBusConfig;
-   Future<void> sendSysNotification(sysNotificationType config) async {
+   Future<void> sendSysNotification(SysNotificationConfig config) async {
     var client = DBusClient.session();
     var object = DBusRemoteObject(client, dBus.sendSysNotification.name,
         DBusObjectPath(dBus.sendSysNotification.path));
     var values = [
       DBusString('deepin-app-store'), // App name
       DBusUint32(0), // Replaces
-      DBusString('success'), // Icon
-      DBusString('安装成功!'), // Summary
-      DBusString('某某应用安装成功'), // Body
+      DBusString(config.status==SysNotificationType.Success?'success':'success'), // Icon
+      DBusString(config.status==SysNotificationType.Success?'安装成功':'卸载成功'), // Summary
+      DBusString(config.status==SysNotificationType.Success?"${config.appName}安装成功":'${config.appName}卸载成功'), // Body
       DBusArray(DBusSignature('s')), // Actions
       DBusDict(DBusSignature('s'), DBusSignature('v')), // Hints
       DBusInt32(2000), // Expire timeout
@@ -34,10 +34,16 @@ class SysNotification {
    }
  }
 
- class sysNotificationType{
+ class SysNotificationConfig{
     String appName;
     String title;
     String  subTitle;
     int timeout;
-    sysNotificationType(this.appName,this.title,this.subTitle,this.timeout);
+    SysNotificationType status;
+    SysNotificationConfig(this.appName,this.status);
+ }
+ enum SysNotificationType{
+  Error,
+   Success,
+   UnInstall
  }

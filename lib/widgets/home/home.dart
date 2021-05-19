@@ -75,7 +75,10 @@ class _Home extends State<Home> {
             width: MediaQuery.of(context).size.width,
             padding:
             EdgeInsets.only(left: 40.0, right: 40.0, top: 20.0, bottom: 20.0),
-            child:CategoryCard()
+            child:Column(children: [
+              CategoryCard(),
+              CategoryCard()
+            ],)
 
         ),
 

@@ -1,16 +1,19 @@
 import 'package:get/get.dart';
 import 'package:store/core/data_state.dart';
+import 'package:store/dbus/sys_notification.dart';
 
 import 'moke_data.dart';
 
 class DataLogic extends GetxController {
   final state = DataState();
+  final sysNotification=SysNotification();
   install(MokeModelEntity value) {
+    sysNotification.sendSysNotification(SysNotificationConfig(value.name,SysNotificationType.Success));
     state.installedList.add(value);
   }
   unInstall(MokeModelEntity value) {
     var installedList = state.installedList;
-    var index = installedList.indexWhere((v) => v.id == value.id);
+    sysNotification.sendSysNotification(SysNotificationConfig(value.name,SysNotificationType.UnInstall));
     installedList.removeWhere((v) => v.id==value.id);
 
   }
@@ -38,8 +41,10 @@ class DataLogic extends GetxController {
     //class类需要update();例如 user=User({name:"张三"}).obs,更新User类 user.update({name:“李四”})
     list.refresh();
   }
+
   @override
   void onReady() {
+    state.init.value=true;
     super.onReady();
   }
 }

@@ -11,6 +11,7 @@ import 'home.dart';
 
 class HomePage extends StatelessWidget {
   final sysConfig = new SysCustomSetting();
+
   final dataLogic = Get.find<DataLogic>();
 
   void onChanged(int index) {
@@ -57,7 +58,9 @@ class HomePage extends StatelessWidget {
                         CustomAvatar(),
                         IconButton(
                           icon: Icon(Icons.settings),
-                          onPressed: () => {},
+                          onPressed: () => {
+                            Get.toNamed('/setting',arguments: '首页')
+                          },
                         )
                       ],
                     )
@@ -69,12 +72,11 @@ class HomePage extends StatelessWidget {
             child: SingleChildScrollView(
               child:Obx((){
                 var homeIndex=dataLogic.state.homeMenuIndex;
-                if(homeIndex.value==0){
-                  return Home();
+                var cageGoryMenu=dataLogic.state.homeLeftMenu;
+                if(homeIndex.value>=0){
+                  return cageGoryMenu[homeIndex.value].page;
                 }
-                if(homeIndex.value==2){
-                  return MyLocal();
-                }
+
                 return Home();
               }),
             ),
