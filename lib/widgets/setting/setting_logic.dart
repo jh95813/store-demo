@@ -1,4 +1,5 @@
 import 'package:get/get.dart';
+import 'package:store/dbus/sys_notification.dart';
 import 'package:store/model/setting_entity.dart';
 
 class SettingLogic extends GetxController{
@@ -11,6 +12,8 @@ class SettingLogic extends GetxController{
     var newItem=SettingList(item.name, item.type, value);
     menuList[index]=newItem;
     update();
-
+    if(value){
+      SysNotification().sysNotificationControl();
+    }
   }
 }

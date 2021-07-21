@@ -17,7 +17,7 @@ class SettingPage extends StatelessWidget {
           leading: MaterialButton(
             child: Icon(Icons.arrow_back_ios_sharp),
             onPressed: () {
-              Get.toNamed(RouteConfig.main);
+              Navigator.pop(context);
             },
           ),
           title: Text('${Get.arguments}跳转至设置'),

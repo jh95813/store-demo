@@ -3,6 +3,7 @@ import 'package:store/dbus/dbus_register.dart';
 
 class SysNotification {
    final dBus=dBusConfig;
+   //发送系统消息
    Future<void> sendSysNotification(SysNotificationConfig config) async {
     var client = DBusClient.session();
     var object = DBusRemoteObject(client, dBus.sendSysNotification.name,

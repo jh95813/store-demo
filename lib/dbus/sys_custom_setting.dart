@@ -12,6 +12,7 @@ class SysCustomSetting {
     var client = DBusClient.session();
     var object = DBusRemoteObjectManager(client, dBus.sysCustomConfig.name,
         DBusObjectPath( dBus.sysCustomConfig.path));
+    //监听该dbus暴露属性的变化
     object.signals.listen((signal) {
       if (signal is DBusObjectManagerInterfacesAddedSignal) {
         printInterfacesAndProperties(signal.interfacesAndProperties);

@@ -5,6 +5,7 @@ import 'package:store/core/data_logic.dart';
 import 'package:store/dbus/sys_custom_setting.dart';
 import 'package:store/widgets/home/searchBar.dart';
 import 'package:store/widgets/my_local/my_local.dart';
+import 'package:store/widgets/setting/setting.dart';
 import 'avatar.dart';
 import 'cateGoryList.dart';
 import 'home.dart';
@@ -27,7 +28,8 @@ class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: Container(
+        body:
+        Container(
             child: new Row(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -59,7 +61,10 @@ class HomePage extends StatelessWidget {
                         IconButton(
                           icon: Icon(Icons.settings),
                           onPressed: () => {
-                            Get.toNamed('/setting',arguments: '首页')
+                          Navigator.of(context).push(
+                          MaterialPageRoute(builder: (context) {
+                          return SettingPage();//返回的是需要跳转单页面
+                          },))
                           },
                         )
                       ],
